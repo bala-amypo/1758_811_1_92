@@ -19,15 +19,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(User user) {
-        if (userRepository.existsByEmail(user.getEmail())) {
-            throw new RuntimeException("Email already exists");
-        }
         return userRepository.save(user);
     }
 
     @Override
     public String login(String email, String password) {
         User user = userRepository.findByEmail(email);
-        return jwtUtil.generateToken(user.getId(), user.getEmail(), user.getRole());
+        return jwtUtil.generateToken(user.getId(), user.getEmail(), "USER");
     }
 }
