@@ -1,27 +1,11 @@
-package com.example.demo.controller;
+package com.example.demo.service;
 
-import com.example.demo.entity.CrimeReport;
-import com.example.demo.service.CrimeReportService;
-import org.springframework.web.bind.annotation.*;
+import com.example.demo.entity.HotspotZone;
 import java.util.List;
 
-@RestController
-@RequestMapping("/reports")
-public class CrimeReportController {
+public interface HotspotZoneService {
 
-    private final CrimeReportService crimeReportService;
+    HotspotZone createZone(HotspotZone zone);
 
-    public CrimeReportController(CrimeReportService crimeReportService) {
-        this.crimeReportService = crimeReportService;
-    }
-
-    @PostMapping
-    public CrimeReport addReport(@RequestBody CrimeReport report) {
-        return crimeReportService.addReport(report);
-    }
-
-    @GetMapping
-    public List<CrimeReport> getReports() {
-        return crimeReportService.getAllReports();
-    }
+    List<HotspotZone> getAllZones();
 }

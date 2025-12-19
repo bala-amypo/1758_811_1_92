@@ -4,6 +4,7 @@ import com.example.demo.entity.HotspotZone;
 import com.example.demo.repository.HotspotZoneRepository;
 import com.example.demo.service.HotspotZoneService;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -17,9 +18,6 @@ public class HotspotZoneServiceImpl implements HotspotZoneService {
 
     @Override
     public HotspotZone createZone(HotspotZone zone) {
-        if (hotspotZoneRepository.findByZoneName(zone.getZoneName()) != null) {
-            throw new RuntimeException("Zone already exists");
-        }
         return hotspotZoneRepository.save(zone);
     }
 
