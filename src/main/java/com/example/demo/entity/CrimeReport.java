@@ -10,11 +10,19 @@ public class CrimeReport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String crimeType;
-    private String description;
     private Double latitude;
     private Double longitude;
     private LocalDateTime occurredAt;
 
-    // getters and setters
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public LocalDateTime getOccurredAt() {
+        return occurredAt;
+    }
 }

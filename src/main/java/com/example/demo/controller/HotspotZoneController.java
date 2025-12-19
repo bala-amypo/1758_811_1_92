@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.HotspotZone;
 import com.example.demo.service.HotspotZoneService;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -16,12 +17,12 @@ public class HotspotZoneController {
     }
 
     @PostMapping
-    public HotspotZone createZone(@RequestBody HotspotZone zone) {
+    public HotspotZone create(@RequestBody HotspotZone zone) {
         return hotspotZoneService.createZone(zone);
     }
 
     @GetMapping
-    public List<HotspotZone> getZones() {
+    public List<HotspotZone> getAll() {
         return hotspotZoneService.getAllZones();
     }
 }

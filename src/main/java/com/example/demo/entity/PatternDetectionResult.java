@@ -1,7 +1,6 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 public class PatternDetectionResult {
@@ -12,12 +11,12 @@ public class PatternDetectionResult {
 
     private Long zoneId;
     private String detectedPattern;
-    private LocalDateTime detectedAt;
 
-    @PrePersist
-    public void prePersist() {
-        this.detectedAt = LocalDateTime.now();
+    public void setZoneId(Long zoneId) {
+        this.zoneId = zoneId;
     }
 
-    // getters and setters
+    public void setDetectedPattern(String detectedPattern) {
+        this.detectedPattern = detectedPattern;
+    }
 }
