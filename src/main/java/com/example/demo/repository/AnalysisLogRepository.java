@@ -1,9 +1,10 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.AnalysisLog;
-import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.demo.entity.AnalysisLog;
 
 public interface AnalysisLogRepository extends JpaRepository<AnalysisLog, Long> {
-    List<AnalysisLog> findByZone_Id(Long zoneId);
+
+    List<AnalysisLog> findByZoneId(Long zoneId);
 }
