@@ -1,8 +1,7 @@
-
-
 package com.example.demo.service.impl;
 
 import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.AnalysisLog;
@@ -16,6 +15,14 @@ public class AnalysisLogServiceImpl implements AnalysisLogService {
 
     public AnalysisLogServiceImpl(AnalysisLogRepository analysisLogRepository) {
         this.analysisLogRepository = analysisLogRepository;
+    }
+
+    @Override
+    public AnalysisLog saveLog(Long zoneId, String message) {
+        AnalysisLog log = new AnalysisLog();
+        log.setZoneId(zoneId);
+        log.setMessage(message);
+        return analysisLogRepository.save(log);
     }
 
     @Override
