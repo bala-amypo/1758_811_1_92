@@ -7,6 +7,5 @@ import java.util.List;
 public interface HotspotZoneRepository extends JpaRepository<HotspotZone, Long> {
     HotspotZone findByZoneName(String zoneName);
     
-    List<HotspotZone> findBySeverityLevel(String severityLevel);
-
+    List<HotspotZone> findBySeverity(String severity); // <-- fixed
 }
