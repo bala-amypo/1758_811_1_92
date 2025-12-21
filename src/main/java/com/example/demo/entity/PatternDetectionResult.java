@@ -11,6 +11,8 @@ public class PatternDetectionResult {
 
     private Long zoneId;
     private String detectedPattern;
+   
+
 
     public void setZoneId(Long zoneId) {
         this.zoneId = zoneId;
