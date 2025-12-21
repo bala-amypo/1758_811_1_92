@@ -13,6 +13,8 @@ public class HotspotZone {
     private String zoneName;
     private Double centerLat;
     private Double centerLong;
+    private String severity;
+
 
     // getters and setters
 }
