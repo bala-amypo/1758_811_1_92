@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Invalid credentials");
         }
 
-        // simple success response (NO JwtUtil)
+        
         return "Login successful";
     }
 }
