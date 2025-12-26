@@ -1,31 +1,43 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
+import com.example.demo.model. AnalysisLog;
+import com.example.demo.service. AnalysisLogService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger. v3.oas.annotations. tags.Tag;
+import org. springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.entity.AnalysisLog;
-import com.example.demo.service.AnalysisLogService;
+import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/analysis-logs")
+@RequestMapping("/logs")
+@Tag(name = "Analysis Logs", description = "Analysis log management endpoints")
+@SecurityRequirement(name = "Bearer Authentication")
 public class AnalysisLogController {
-
+    
     private final AnalysisLogService analysisLogService;
-
+    
     public AnalysisLogController(AnalysisLogService analysisLogService) {
         this.analysisLogService = analysisLogService;
     }
-
-    @PostMapping
-    public AnalysisLog saveLog(
-            @RequestParam Long zoneId,
-            @RequestParam String message) {
-        return analysisLogService.saveLog(zoneId, message);
+    
+    @PostMapping("/{zoneId}")
+    @Operation(summary = "Add an analysis log for a zone")
+    public ResponseEntity<?> addLog(@PathVariable Long zoneId, @RequestBody Map<String, String> payload) {
+        try {
+            String message = payload.get("message");
+            AnalysisLog log = analysisLogService.addLog(zoneId, message);
+            return ResponseEntity.ok(log);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
-
-    @GetMapping("/{zoneId}")
-    public List<AnalysisLog> getLogsByZone(@PathVariable Long zoneId) {
-        return analysisLogService.getLogsByZoneId(zoneId);
+    
+    @GetMapping("/zone/{zoneId}")
+    @Operation(summary = "Get logs for a zone")
+    public ResponseEntity<List<AnalysisLog>> getLogsByZone(@PathVariable Long zoneId) {
+        return ResponseEntity.ok(analysisLogService.getLogsByZone(zoneId));
     }
 }
